@@ -15,7 +15,3 @@ export function FSCard({ children }: FSCardProps) {
 FSCard.Body = function ({ children }: FSCardProps) {
   return <div className="shadow bg-white p-6 rounded-lg">{children}</div>;
 };
-
-FSCard.BelowCard = function ({ children }: FSCardProps) {
-  return <div className="mt-2 justify-center flex gap-3">{children}</div>;
-};
