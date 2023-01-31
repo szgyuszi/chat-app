@@ -31,6 +31,7 @@ const App = () => {
         <ChatClient
           socket={socket}
           roomName={user?.roomId!}
+          user={user?.userName!}
           setUser={setUser}
         />
       )}
