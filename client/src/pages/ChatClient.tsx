@@ -7,21 +7,36 @@ import { Button } from "../components/Button";
 interface ChatClientProps {
   socket: io.Socket<DefaultEventsMap, DefaultEventsMap>;
   roomName: string;
+  user: string;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
-export function ChatClient({ socket, roomName, setUser }: ChatClientProps) {
+export function ChatClient({
+  socket,
+  roomName,
+  user,
+  setUser,
+}: ChatClientProps) {
+  const [messageList, setMessageList] = useState<string[]>([]);
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
 
-  const sendMessage = () => {
-    if (message) {
-      socket.emit("sendMessage", message);
+  const sendMessage = async () => {
+    if (message !== "") {
+      const messageData = {
+        roomId: roomName,
+        author: user,
+        message: message,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
+
+      socket.emit("sendMessage", messageData);
+      setMessageList((list) => [...list, message]);
       setMessage("");
-      setError(false);
-      return;
     }
-    setError(true);
   };
 
   return (
