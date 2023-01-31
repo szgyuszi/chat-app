@@ -21,7 +21,9 @@ const io = new Server(server, {
 
 type MessageDataType = {
   roomId: string;
-  msg: string;
+  author: string;
+  message: string;
+  time: Date;
 };
 
 io.on(
