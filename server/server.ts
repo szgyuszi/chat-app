@@ -19,6 +19,11 @@ const io = new Server(server, {
   },
 });
 
+type MessageDataType = {
+  roomId: string;
+  msg: string;
+};
+
 io.on(
   "connection",
   (socket: Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap>) => {
@@ -27,6 +32,10 @@ io.on(
     socket.on("joinRoom", (roomId: string) => {
       socket.join(roomId);
       console.log(`User: ${socket.id} joined room: ${roomId}`);
+    });
+
+    socket.on("sendMessage", (data: MessageDataType) => {
+      socket.to(data.roomId).emit("receiveMessage", data);
     });
 
     socket.on("disconnect", () => {
