@@ -6,12 +6,14 @@ type FSCardProps = {
 
 export function FSCard({ children }: FSCardProps) {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="max-w-md w-full">{children}</div>
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-gray-700 to-gray-900 ">
+      <div className="w-[28%]">{children}</div>
     </div>
   );
 }
 
 FSCard.Body = function ({ children }: FSCardProps) {
-  return <div className="shadow bg-white p-6 rounded-lg">{children}</div>;
+  return (
+    <div className="shadow bg-white p-6 rounded-lg w-full">{children}</div>
+  );
 };
