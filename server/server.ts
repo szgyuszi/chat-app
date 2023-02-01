@@ -23,7 +23,7 @@ type MessageDataType = {
   roomId: string;
   author: string;
   message: string;
-  time: Date;
+  time: string;
 };
 
 io.on(
