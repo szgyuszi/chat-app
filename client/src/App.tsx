@@ -13,7 +13,7 @@ export type User = {
 
 const App = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(true);
 
   useEffect(() => {
     setLoggedIn((prev) => !prev);
@@ -24,7 +24,7 @@ const App = () => {
       {!loggedIn ? (
         <FSCard>
           <FSCard.Body>
-            <Login socket={socket} user={user} setUser={setUser} />
+            <Login socket={socket} setUser={setUser} />
           </FSCard.Body>
         </FSCard>
       ) : (
