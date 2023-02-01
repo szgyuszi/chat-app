@@ -11,11 +11,10 @@ type User = {
 
 interface LoginProps {
   socket: io.Socket<DefaultEventsMap, DefaultEventsMap>;
-  user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
-export function Login({ socket, user, setUser }: LoginProps) {
+export function Login({ socket, setUser }: LoginProps) {
   const userNameRef = useRef<HTMLInputElement>(null);
   const roomNameRef = useRef<HTMLInputElement>(null);
 
@@ -23,15 +22,16 @@ export function Login({ socket, user, setUser }: LoginProps) {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(userNameRef.current?.value);
-    console.log(roomNameRef.current?.value);
 
-    if (userNameRef.current?.value && roomNameRef.current?.value) {
+    if (
+      userNameRef.current?.value !== "" &&
+      roomNameRef.current?.value !== ""
+    ) {
       socket.emit("joinRoom", roomNameRef.current?.value);
       setIsError(false);
       setUser({
-        userName: userNameRef.current?.value,
-        roomId: roomNameRef.current?.value,
+        userName: userNameRef.current?.value!,
+        roomId: roomNameRef.current?.value!,
       });
     } else {
       setIsError(true);
@@ -40,15 +40,19 @@ export function Login({ socket, user, setUser }: LoginProps) {
 
   return (
     <>
-      <h1 className="text-3xl font-bold text-center mb-2">
+      <h1 className="text-6xl font-bold text-center mb-6">
         Weclome to Chatify
       </h1>
-      <p className="text-xl text-gray-500 text-center mb-6">Start chatting!</p>
+      <p className="text-2xl text-gray-500 text-center mb-10">
+        Start chatting!
+      </p>
       <form
         className="grid grid-cols-[auto,1fr] gap-x-3 gap-y-5 items-center justify-items-end"
         onSubmit={handleSubmit}
       >
-        <label htmlFor="userName">Username</label>
+        <label className="text-2xl" htmlFor="userName">
+          Username
+        </label>
         <Input
           id="userName"
           pattern="\S*"
@@ -56,17 +60,20 @@ export function Login({ socket, user, setUser }: LoginProps) {
           ref={userNameRef}
           required
           autoFocus
+          className="text-2xl"
         />
-        <label htmlFor="room">Room Name</label>
+        <label className="text-2xl" htmlFor="room">
+          Room Name
+        </label>
         <Input
           id="room"
           placeholder="Enter Room Name"
           ref={roomNameRef}
-          className={"text-gray-700"}
+          className={"text-gray-700 text-2xl"}
           pattern="\S*"
         />
 
-        <Button type="submit" className="col-span-full w-full ">
+        <Button type="submit" className="col-span-full w-full text-2xl">
           Enter Room
         </Button>
       </form>
