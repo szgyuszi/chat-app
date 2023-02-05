@@ -71,10 +71,15 @@ export function ChatClient({
     });
   }, [socket]);
 
+  const handleExitRoom = () => {
+    setUser(null);
+    socket.emit("disconnectFromRoom", roomName);
+  };
+
   return (
     <main>
       <section className="flex justify-start flex-row items-center sticky top-0 bg-gray-900">
-        <Button className="m-6 text-lg" onClick={() => setUser(null)}>
+        <Button className="m-6 text-lg" onClick={handleExitRoom}>
           Exit
         </Button>
         <h1 className="m-8 text-center text-white text-4xl w-[100%]">
