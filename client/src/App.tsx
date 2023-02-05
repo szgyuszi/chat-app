@@ -78,7 +78,7 @@ const App = () => {
                 </Button>
                 <p className="m-2 border-2 border-gray-200 w-2/3"></p>
                 <Button
-                  /* disabled={rooms.length == 0 ? true : false} */
+                  disabled={rooms.length == 0 ? true : false}
                   className="m-2"
                   onClick={() => {
                     setIsCreateRoom(false);
@@ -90,7 +90,7 @@ const App = () => {
               </div>
             )}
             {isCreateRoom && <CreateRoom joinRoom={joinRoom} />}
-            {isJoinRoom && <JoinRoom rooms={rooms} />}
+            {isJoinRoom && <JoinRoom rooms={rooms} joinRoom={joinRoom} />}
 
             {(isCreateRoom || isJoinRoom) && (
               <Button
