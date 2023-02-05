@@ -6,6 +6,10 @@ type CreatedRoom = {
   users: number;
 };
 
+function onConnectToServer() {
+  return Rooms.getRooms();
+}
+
 function onJoinRoom(roomId: string, userId: string) {
   Users.registerUser(userId, roomId);
   const newRoom: CreatedRoom = Rooms.registerRoom(roomId, userId);
@@ -28,4 +32,5 @@ export const Controller = {
   onJoinRoom,
   onDisconnectFromRoom,
   onDisconnect,
+  onConnectToServer,
 };
