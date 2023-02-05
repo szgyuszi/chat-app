@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 import { Socket } from "socket.io";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
+import { Controller } from "./controller/SocketController";
 config();
 
 const express = require("express");
@@ -29,19 +30,24 @@ type MessageDataType = {
 io.on(
   "connection",
   (socket: Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap>) => {
-    console.log(`User connected to ${socket.id}`);
-
     socket.on("joinRoom", (roomId: string) => {
       socket.join(roomId);
-      console.log(`User: ${socket.id} joined room: ${roomId}`);
+      const newRoom = Controller.onJoinRoom(roomId, socket.id);
+      socket.broadcast.emit("roomCreated", newRoom);
     });
 
     socket.on("sendMessage", (data: MessageDataType) => {
       socket.to(data.roomId).emit("receiveMessage", data);
     });
 
+    socket.on("disconnectFromRoom", (roomId: string) => {
+      const rooms = Controller.onDisconnectFromRoom(roomId, socket.id);
+      socket.broadcast.emit("roomsUpdate", rooms);
+    });
+
     socket.on("disconnect", () => {
-      console.log(`User disconnected from ${socket.id}`);
+      const rooms = Controller.onDisconnect(socket.id);
+      socket.broadcast.emit("roomsUpdate", rooms);
     });
   }
 );
