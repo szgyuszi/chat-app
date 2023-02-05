@@ -32,7 +32,12 @@ function disconnectFromRoom(roomId: string, userId: string) {
   return rooms;
 }
 
+function getRooms() {
+  return rooms;
+}
+
 export const Rooms = {
   registerRoom,
   disconnectFromRoom,
+  getRooms,
 };
