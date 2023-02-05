@@ -30,6 +30,8 @@ type MessageDataType = {
 io.on(
   "connection",
   (socket: Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap>) => {
+    socket.emit("connectToServer", Controller.onConnectToServer());
+
     socket.on("joinRoom", (roomId: string) => {
       socket.join(roomId);
       const newRoom = Controller.onJoinRoom(roomId, socket.id);
