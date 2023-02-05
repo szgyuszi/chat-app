@@ -41,6 +41,9 @@ const App = () => {
     socket.on("roomsUpdate", (newRooms: Room[]) => {
       setRooms(newRooms);
     });
+    socket.on("connectToServer", (newRooms: Room[]) => {
+      setRooms(newRooms);
+    });
   }, [socket]);
 
   const joinRoom = (roomId: string, userName: string) => {
