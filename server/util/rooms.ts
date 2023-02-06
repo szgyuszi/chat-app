@@ -9,12 +9,12 @@ function registerRoom(room: string, userId: string) {
   for (i = 0; i < rooms.length; i++) {
     if (rooms[i].roomId === room) {
       rooms[i].users.push(userId);
-      return { roomId: rooms[i].roomId, users: rooms[i].users.length };
+      return rooms[i];
     }
   }
   const newRoom: Room = { roomId: room, users: [userId] };
   rooms.push(newRoom);
-  return { roomId: newRoom.roomId, users: newRoom.users.length };
+  return newRoom;
 }
 
 function disconnectFromRoom(roomId: string, userId: string) {

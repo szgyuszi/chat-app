@@ -3,7 +3,7 @@ import { Users } from "../util/users";
 
 type CreatedRoom = {
   roomId: string;
-  users: number;
+  users: string[];
 };
 
 function onConnectToServer() {
