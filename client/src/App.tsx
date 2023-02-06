@@ -16,7 +16,7 @@ export type User = {
 
 type Room = {
   roomId: string;
-  users: number;
+  users: string[];
 };
 
 const App = () => {
