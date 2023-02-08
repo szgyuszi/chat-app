@@ -21,16 +21,16 @@ A simple chat application
 
 ### Main page
 
-![chat-main](https://user-images.githubusercontent.com/93653125/216946742-fbb0d45b-5ae8-4803-b0b4-489c22eb286d.png)
+![chatMain](https://user-images.githubusercontent.com/93653125/217608394-7d055c3f-050e-46bb-8f0a-d7dff5149b27.png)
 
 ### Create a room
 
-![chat-create-room](https://user-images.githubusercontent.com/93653125/216947712-0f12c964-24c3-43cb-bff4-dab27cd8d20a.png)
+![chatCreate](https://user-images.githubusercontent.com/93653125/217608416-21c10a52-536d-462d-a0b2-5ae3e31b2cd6.png)
 
 ### Join a room
 
-![chat-join-room](https://user-images.githubusercontent.com/93653125/216947734-fd0c1ee9-1993-4669-8bbf-aafc3c1f80c3.png)
+![chatJoin](https://user-images.githubusercontent.com/93653125/217608438-ddcb3335-d973-43ae-bdb7-a421b44cf401.png)
 
 ### Chat box
 
-![chat-chat-box](https://user-images.githubusercontent.com/93653125/216947749-486c4006-ba01-4c21-ad10-abc4161d9ebc.png)
+![chatBox](https://user-images.githubusercontent.com/93653125/217608452-5805a836-62ae-4ced-8e1b-7d31f5d513b2.png)
